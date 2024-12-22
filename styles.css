@@ -1,0 +1,284 @@
+:root {
+    --primary-color: rgba(142, 110, 149, 0.9);
+    --text-color: rgba(0, 0, 0, 0.8);
+    --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --input-border: rgba(0, 0, 0, 0.3);
+    --bg-color: rgba(255, 255, 255, 0.9);
+    --page-bg: transparent;
+    --gradient-start: transparent;
+    --gradient-end: transparent;
+    --shadow-color: rgba(0, 0, 0, 0.25);
+    --input-bg: rgba(255, 255, 255, 0.1);
+    --button-gradient: linear-gradient(135deg, 
+        rgba(142, 110, 149, 0.9),
+        rgba(142, 110, 149, 0.7)
+    );
+}
+
+[data-theme="dark"] {
+    --primary-color: rgba(179, 145, 187, 0.8);
+    --text-color: rgba(255, 255, 255, 0.85);
+    --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --input-border: rgba(255, 255, 255, 0.3);
+    --bg-color: rgba(33, 33, 33, 0.9);
+    --page-bg: #121212;
+    --gradient-start: rgba(18, 18, 18, 0.2);
+    --gradient-end: rgba(18, 18, 18, 0.95);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --input-bg: rgba(0, 0, 0, 0.2);
+    --button-gradient: linear-gradient(135deg,
+        rgba(179, 145, 187, 0.8),
+        rgba(142, 110, 149, 0.6)
+    );
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif SC', serif;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at center, 
+        var(--gradient-start) 0%,
+        var(--gradient-end) 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    perspective: 1000px;
+}
+
+.login-container {
+    width: 800px;
+    height: 450px;
+    display: flex;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 
+        0 20px 50px var(--shadow-color),
+        0 10px 30px rgba(0, 0, 0, 0.15),
+        inset 0 0 50px rgba(255, 255, 255, 0.1);
+    background: url('https://tool.liumingye.cn/bingimg/img.php') center/cover no-repeat;
+    transition: all 0.3s ease;
+    transform: translateZ(0) rotateX(2deg);
+    transform-style: preserve-3d;
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        transparent 66.67%,
+        var(--gradient-end) 100%
+    );
+    z-index: 2;
+}
+
+[data-theme="dark"] .login-container::before {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.login-container::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 33.33%;
+    height: 100%;
+    background: inherit;
+    background-position: right;
+    filter: blur(20px);
+    z-index: 3;
+}
+
+[data-theme="dark"] .login-container::after {
+    background: inherit;
+    background-position: right;
+    filter: blur(20px) brightness(0.6);
+}
+
+.login-box {
+    width: 33.33%;
+    height: 100%;
+    margin-left: auto;
+    padding: 2.5rem 2rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 
+        -10px 0 30px var(--shadow-color),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.login-box form {
+    width: 100%;
+    position: relative;
+    z-index: 6;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 2rem;
+    padding: 5px 0;
+}
+
+input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid var(--input-border);
+    outline: none;
+    background: transparent;
+    color: var(--text-color);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease;
+}
+
+label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+input:focus {
+    border-bottom-color: var(--primary-color);
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -15px;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    opacity: 1;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: 'Noto Serif SC', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+[data-theme="dark"] button {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+.light-icon {
+    display: none;
+}
+
+.dark-icon {
+    display: block;
+}
+
+[data-theme="dark"] .light-icon {
+    display: block;
+}
+
+[data-theme="dark"] .dark-icon {
+    display: none;
+}
+
+.login-box h2,
+.login-box label,
+.login-box input {
+    color: var(--text-color);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-box input {
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .login-container {
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.7),
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 5px 15px rgba(0, 0, 0, 0.4),
+        inset 0 2px 20px rgba(255, 255, 255, 0.1);
+}
+
+.login-container:hover {
+    transform: translateZ(30px) rotateX(0deg);
+    box-shadow: 
+        0 25px 60px var(--shadow-color),
+        0 15px 40px rgba(0, 0, 0, 0.2),
+        inset 0 0 60px rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .login-container:hover {
+    box-shadow: 
+        0 30px 70px rgba(0, 0, 0, 0.8),
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 15px 25px rgba(0, 0, 0, 0.5),
+        inset 0 2px 20px rgba(255, 255, 255, 0.15);
+}
+ 
