@@ -6,4 +6,4 @@
 <img width="1464" alt="image" src="https://github.com/user-attachments/assets/cb7ddfb8-3b57-44a2-af45-1262ebd8ab0e" />
 ## 其他
 背景图接口来自 https://tool.liumingye.cn/bingimg/img.php
-仓库代码由 cursor AI 提供全部技术支持
+仓库代码由 cursor 提供生成
